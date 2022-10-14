@@ -8,7 +8,7 @@ BOT = telebot.TeleBot(TOKEN)
 
 @BOT.message_handler(commands=['start', 'help'])
 def hello(message):
-    BOT.send_message(message.chat.id, 'Здравствуйте! Введите \'погода\' или \'новости\'.')
+    BOT.send_message(message.chat.id, 'Здравствуйте! Введите \'погода\', \'новости\' или \'курс валют\'.')
 
 
 @BOT.message_handler(commands=['button'])
@@ -81,7 +81,7 @@ def message_reply(message):
         BOT.send_message(message.chat.id, 'Новости Москвы: ')
         for data in get_news():
             BOT.send_message(message.chat.id, data)
-    elif message.text.lower() == 'курс' or message.text.lower() == 'exchange rates':
+    elif message.text.lower() == 'курс валют' or message.text.lower() == 'exchange rates':
         BOT.message_handler(message.chat.id, 'Курс валют: ')
         BOT.send_message(message.chat.id, f'USD: {get_exchange_rates()[0]} rub')
         BOT.send_message(message.chat.id, f'EUR: {get_exchange_rates()[1]} rub')
